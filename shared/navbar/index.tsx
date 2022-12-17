@@ -7,22 +7,11 @@ import StorageIcon from "@mui/icons-material/Storage";
 import PersonIcon from "@mui/icons-material/Person";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import { useClickOutside } from "@utils/useClickOutside";
-
-const navbarItems = [
-   {
-      icon: <HomeIcon />,
-      text: "Inicio",
-      link: "/dashboard",
-   },
-   {
-      icon: <StorageIcon />,
-      text: "Cursos",
-      link: "/cursos",
-   },
-];
+import CoursesSubmenu from "./coursesSubmenu";
 
 function Navbar() {
-   const [showSubmenu, setShowSubmenu] = useState(false);
+   const [showProfileSubmenu, setShowProfileSubmenu] = useState(false);
+   const [showCoursesSubmenu, setShowCoursesSubmenu] = useState(false);
    const [showMenu, setShowMenu] = useState(false);
    const navRef = useRef<HTMLElement | null>(null);
 
@@ -30,13 +19,17 @@ function Navbar() {
       setShowMenu((showMenu) => !showMenu);
    };
 
-   const toggleSubmenu = () => {
-      setShowSubmenu((showSubmenu) => !showSubmenu);
+   const toggleProfileSubmenu = () => {
+      setShowProfileSubmenu((show) => !show);
+   };
+   const toggleCoursesSubmenu = () => {
+      setShowCoursesSubmenu((show) => !show);
    };
 
    useClickOutside(navRef, () => {
       setShowMenu(false);
-      setShowSubmenu(false);
+      setShowProfileSubmenu(false);
+      setShowCoursesSubmenu(false);
    });
 
    return (
@@ -46,20 +39,32 @@ function Navbar() {
       >
          <Topbar toggle={toggleMenu} />
          <ul
-            className={`bg-[#202020] pb-12 overflow-y-scroll md:overflow-y-visible hideScrollbar navUl ${
+            className={`bg-[#202020] pb-12 overflow-y-scroll md:overflow-y-visible hideScrollbar navUl md:relative ${
                showMenu ? "left-0" : "left-[-100%]"
-            } md:left-[25%] md:flex-row md:h-fit md:pb-0 md:top-1`}
+            } md:left-0 md:flex-row md:h-fit md:pb-0 md:top-1`}
          >
-            {navbarItems.map(({ icon, text, link }) => (
-               <li key={text + link}>
-                  <Link href={link} className="flex gap-2 p-3 hoverOrange">
-                     {icon}
-                     <p>{text}</p>
-                  </Link>
-               </li>
-            ))}
+            <li>
+               <Link
+                  href="/dashboard"
+                  className="flex gap-2 p-3 md:px-4 hoverOrange"
+               >
+                  <HomeIcon />
+                  <p>Inicio</p>
+               </Link>
+            </li>
 
-            <li className="hoverOrange" onClick={toggleSubmenu}>
+            <li className="hoverOrange" onClick={toggleCoursesSubmenu}>
+               <div className="flex items-center justify-between p-3 ">
+                  <span className="flex gap-2 mr-24 md:mr-4">
+                     <StorageIcon />
+                     <p>Cursos</p>
+                  </span>
+                  <ArrowDropDownIcon />
+               </div>
+               <CoursesSubmenu show={showCoursesSubmenu} />
+            </li>
+
+            <li className="hoverOrange" onClick={toggleProfileSubmenu}>
                <div className="flex items-center justify-between p-3 ">
                   <span className="flex gap-2 mr-24 md:mr-4">
                      <PersonIcon />
@@ -67,7 +72,7 @@ function Navbar() {
                   </span>
                   <ArrowDropDownIcon />
                </div>
-               <ProfileSubmenu show={showSubmenu} />
+               <ProfileSubmenu show={showProfileSubmenu} />
             </li>
          </ul>
       </nav>

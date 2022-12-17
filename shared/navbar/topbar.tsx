@@ -12,7 +12,7 @@ function Topbar({ toggle }: TopbarProps) {
             <MenuIcon className="text-[2rem]" />
          </span>
          <p className="flex items-center justify-center w-full text-2xl font-semibold">
-            Título
+            Study Wolf
          </p>
       </div>
    );

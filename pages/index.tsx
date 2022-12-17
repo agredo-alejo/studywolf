@@ -1,6 +1,5 @@
 import Head from "next/head";
 import Link from "next/link";
-// import Navbar from "@shared/navbar";
 
 export default function Home() {
    return (
@@ -25,14 +24,14 @@ export default function Home() {
          </nav>
 
          <div className="relative flex justify-center w-full">
-            <span className=" h-[80vh] flex justify-center items-center">
+            <span className=" h-[100vh] flex justify-center items-center">
                <img
                   src="/fondo.jpg"
                   alt=""
                   className="absolute left-0 top-0 flex object-cover h-full w-[100vw] -z-10"
                />
                <h1 className="text-3xl font-bold text-white">
-                  Bienvenido a Study wolf
+                  <Link href="/dashboard">Bienvenido a Study wolf</Link>
                </h1>
             </span>
          </div>
