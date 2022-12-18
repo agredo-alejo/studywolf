@@ -53,14 +53,16 @@ function Navbar() {
                </Link>
             </li>
 
-            <li className="hoverOrange" onClick={toggleCoursesSubmenu}>
-               <div className="flex items-center justify-between p-3 ">
-                  <span className="flex gap-2 mr-24 md:mr-4">
-                     <StorageIcon />
-                     <p>Cursos</p>
-                  </span>
-                  <ArrowDropDownIcon />
-               </div>
+            <li className="hoverOrange">
+               <span className="flex items-center justify-between p-3 ">
+                  <Link href="/cursos">
+                     <span className="flex gap-2 mr-24 md:mr-4">
+                        <StorageIcon />
+                        <p>Cursos</p>
+                     </span>
+                  </Link>
+                  <ArrowDropDownIcon onClick={toggleCoursesSubmenu} />
+               </span>
                <CoursesSubmenu show={showCoursesSubmenu} />
             </li>
 

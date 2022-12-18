@@ -10,17 +10,17 @@ const profileSubmenuItems = [
    {
       icon: <PersonIcon />,
       text: "Perfil",
-      link: "/",
+      link: "/dashboard",
    },
    {
       icon: <InsightsIcon />,
       text: "Progreso",
-      link: "/",
+      link: "/dashboard",
    },
    {
       icon: <SettingsIcon />,
       text: "Configuracion",
-      link: "/",
+      link: "/dashboard",
    },
 ];
 
